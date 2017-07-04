@@ -1,16 +1,28 @@
 class Yordex
 
-  # require 'net/http'
+  require 'net/https'
+
+  @api_base = 'https://api.yordex.com/v1/'
+  @api_key = 'your-api-key'
+
+  def initialize(api_key)
+    @api_key = api_key
+  end
+
+  def get_order(order_id)
+    uri = URI.parse("https://api.yordex.com/v1/orders/#{order_id}")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@api_key})
+    response = http.request(request)
+
+    return response
+  end
 
 
 
-  #Story 2: get a single order
-  # https://docs.yordex.com/docs/getting-an-order
 
-  # Scenario: successfully request a single order
-  # Scenario: unsuccessfully request a single order
-  # Scenario: successfully display a single order
-  # Scenario: unsuccessfully display a single order
 
   #Story 3: create and update trader
   # https://docs.yordex.com/docs/creating-a-trader
