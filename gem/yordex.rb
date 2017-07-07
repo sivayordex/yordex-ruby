@@ -16,7 +16,7 @@ class Yordex
     http.use_ssl = true
     http.start
     request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>'none', 'Content-Type'=>'application/json'})
-    request.body = {username: user, password: pass}.to_json
+    request.body = {"username"=>user, "password"=>pass}.to_json
     response = http.request(request)
 
     p response
@@ -42,93 +42,185 @@ class Yordex
     return response
   end
 
+  def create_trader
+    uri = URI.parse("https://api.yordex.com/v1/traders")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
+    request.body = {
+                      "traderId"=>"your-trader-id",
+                      "user" =>{
+                          "email"=>"user@email.com",
+                      },
+                      "companyTradingName"=>"Company name",
+                      "companyTradingAddress"=> {
+                        "address1"=>"Address Line 1",
+                        "city"=>"City",
+                        "countryCode"=>"US",
+                        "postalCode"=>"12345"
+                      }
+                  }.to_json
+    response = http.request(request)
 
+    return response
+  end
 
+  def update_trader
+    uri = URI.parse("https://api.yordex.com/v1/traders/trader-id")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
+    request.body = {
+                    "companyTradingName"=>"Company name",
+                    "companyTradingAddress"=> {
+                      "address1"=>"Address Line 1",
+                      "city"=>"City",
+                      "countryCode"=>"US",
+                      "postalCode"=>"12345"
+                    }
+                  }.to_json
+    response = http.request(request)
 
+    return response
+  end
 
-  #Story 3: create and update trader
-  # https://docs.yordex.com/docs/creating-a-trader
+  def create_order
+    uri = URI.parse("https://api.yordex.com/v1/orders")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request.body = {
+                    "buyerId"=>"other-trader-id",
+                    "sellerId"=>"your-trader-id",
+                    "description"=>"My first order",
+                    "orderAmountInCents"=>100000,
+                    "orderCurrency"=>"USD",
+                    "terms"=>"30% upfront 70% before shipping"
+                  }.to_json
+    response = http.request(request)
 
-  # Scenario: successfully request creation of a new trader
-  # Scenario: successfully request update of a trader
-  # Scenario: unsuccessfully request creation or update of a trader
-  # Scenario: unsuccessfully request update of a trader without Trader ID
-  # Scenario: successfully create a new trader
-  # Scenario: successfully update a trader
-  # Scenario: unsuccessfully create a new trader
-  # Scenario: unsuccessfully update a trader
+    return response
+  end
 
-  #Story 4: create and update order
-  # https://docs.yordex.com/docs/creating-an-order
-  #
-  # Scenario: successfully request creation of an order
-  # Scenario: successfully request update of an order
-  # Scenario: unsuccessfully request creation of an order
-  # Scenario: unsuccessfully request update of an order without order ID
-  # Scenario: successfully create a new order
-  # Scenario: successfully update an order
-  # Scenario: unsuccessfully create or update an order
+  def update_order
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request.body = {
+                    "buyerId"=>"other-trader-id",
+                    "sellerId"=>"your-trader-id",
+                    "description"=>"My first order",
+                    "orderAmountInCents"=>100000,
+                    "orderCurrency"=>"USD",
+                    "terms"=>"30% upfront 70% before shipping"
+                  }.to_json
+    response = http.request(request)
 
-  #Story 5: open and close an order
-  # https://docs.yordex.com/docs/creating-an-order
-  #
-  # Scenario: successfully request closing or opening of an order
-  # Scenario: unsuccessfully request closing or opening of an order without order ID
-  # Scenario: successfully close or open an order
-  # Scenario: unsuccessfully close or open an order
+    return response
+  end
 
-  #Story 6: approve order
-  # https://docs.yordex.com/docs/approving-an-order
-  #
-  # Scenario: successfully request approval of an order
-  # Scenario: successfully request rejection of an order
-  # Scenario: unsuccessfully request approval or rejection of an order
-  # Scenario: successfully approve or reject an order
-  # Scenario: unsuccessfully approve or reject an order
+  def open_order
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/open")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@api_key})
+    response = http.request(request)
 
-  #Story 7: display advertisements
-  # https://docs.yordex.com/docs/adding-services
-  #
-  # Scenario: successfully request advertisements
-  # Scenario: unsuccessfully request advertisements
-  # Scenario: successfully display advertisements
-  # Scenario: inform user if there were no advertisements
-  # Scenario: inform user if the advertisements API gave an error
+    return response
+  end
 
-  #Story 8: enable/disable advertisements
-  # https://docs.yordex.com/docs/adding-services
-  #
-  # Scenario: successfully request enablement or disablement of an advertisement
-  # Scenario: unsuccessfully request enablement or disablement of an advertisement
-  # Scenario: successfully enable or disable an advertisement
-  # Scenario: unsuccessfully enable or disable an advertisement
+  def close_order
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/close")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@api_key})
+    response = http.request(request)
 
-  #Story 9: confirming an event
-  # https://docs.yordex.com/docs/confirming-an-event
-  #
-  # Scenario: successfully request confirmation of an event
-  # Scenario: unsuccessfully request confirmation of an event
-  # Scenario: successfully confirm an event
-  # Scenario: unsuccessfully confirm an event
+    return response
+  end
 
-  #Story 10: get SSO token
-  # https://docs.yordex.com/docs/single-sign-on
-  #
-  # Scenario: successfully request SSO token
-  # Scenario: unsuccessfully request SSO token
-  # Scenario: successfully display SSO token
-  # Scenario: unsuccessfully display SSO token
+  def approve_order
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/approvals")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request.body = {
+                      "approved"=>true
+                  }.to_json
+    response = http.request(request)
 
+    return response
+  end
 
+  def reject_order
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/approvals")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request.body = {
+                      "approved"=>false
+                  }.to_json
+    response = http.request(request)
 
+    return response
+  end
 
-  def makeRequst()
-    url = URI.parse('http://www.example.com/index.html')
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    puts res.body
+  def request_advertisements
+    uri = URI.parse("https://api.yordex.com/v1/ads?orderId=order-id")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@api_key})
+    response = http.request(request)
+
+    return response
+  end
+
+  def enable_advertisement
+
+  end
+
+    #Story 8: enable/disable advertisements
+    # https://docs.yordex.com/docs/adding-services
+    #
+    # Scenario: successfully request enablement or disablement of an advertisement
+    # Scenario: unsuccessfully request enablement or disablement of an advertisement
+    # Scenario: successfully enable or disable an advertisement
+    # Scenario: unsuccessfully enable or disable an advertisement
+
+  def confirm_event
+    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/events/event-id/confirmations")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key})
+    response = http.request(request)
+
+    return response
+  end
+
+  def get_sso_token
+    uri = URI.parse("https://api.yordex.com/v1/ssotokens  ")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request.body = {
+                    "uri"=>"/orders/order-id",
+                    "redirectURL"=>"your-redirect-url"
+                  }.to_json
+    response = http.request(request)
+
+    return response
   end
 
 
