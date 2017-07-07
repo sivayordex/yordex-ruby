@@ -1,12 +1,34 @@
 class Yordex
 
   require 'net/https'
+  require 'json'
 
   @api_base = 'https://api.yordex.com/v1/'
   @api_key = 'your-api-key'
 
   def initialize(api_key)
     @api_key = api_key
+  end
+
+  def get_api_key(user, pass)
+    uri = URI.parse("http://internal-api.dev.yordex.com/sessions")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>'none', 'Content-Type'=>'application/json'})
+    request.body = {username: user, password: pass}.to_json
+    response = http.request(request)
+
+    p response
+
+    uri = URI.parse("http://internal-api.dev.yordex.com/api-keys")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.start
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>response.token})
+    response = http.request(request)
+
+    p response
   end
 
   def get_order(order_id)
