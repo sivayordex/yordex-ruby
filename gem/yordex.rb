@@ -3,32 +3,34 @@ class Yordex
   require 'net/https'
   require 'json'
 
-  @api_base = 'https://api.yordex.com/v1/'
-  @api_key = 'your-api-key'
+  @@api_base = 'https://api.yordex.com/v1/'
+  @@api_key = 'your-api-key'
 
   def initialize(api_key)
-    @api_key = api_key
+    @@api_key = api_key
   end
 
   def get_api_key(user, pass)
     uri = URI.parse("http://internal-api.dev.yordex.com/sessions")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    # http.use_ssl = true
+    # http.ssl_version = :SSLv23
     http.start
     request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>'none', 'Content-Type'=>'application/json'})
     request.body = {"username"=>user, "password"=>pass}.to_json
     response = http.request(request)
 
+p request.body
     p response
 
-    uri = URI.parse("http://internal-api.dev.yordex.com/api-keys")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.start
-    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>response.token})
-    response = http.request(request)
-
-    p response
+    # uri = URI.parse("http://internal-api.dev.yordex.com/api-keys")
+    # http = Net::HTTP.new(uri.host, uri.port)
+    # http.use_ssl = true
+    # http.start
+    # request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>response.token})
+    # response = http.request(request)
+    #
+    # p response
   end
 
   def get_order(order_id)
@@ -36,20 +38,20 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@api_key})
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
   end
 
-  def create_trader
+  def create_trader(trader_id)
     uri = URI.parse("https://api.yordex.com/v1/traders")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
     request.body = {
-                      "traderId"=>"your-trader-id",
+                      "traderId"=>trader_id,
                       "user" =>{
                           "email"=>"user@email.com",
                       },
@@ -71,7 +73,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
+    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
     request.body = {
                     "companyTradingName"=>"Company name",
                     "companyTradingAddress"=> {
@@ -91,7 +93,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
                     "buyerId"=>"other-trader-id",
                     "sellerId"=>"your-trader-id",
@@ -110,7 +112,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
                     "buyerId"=>"other-trader-id",
                     "sellerId"=>"your-trader-id",
@@ -129,7 +131,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@api_key})
+    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
@@ -140,7 +142,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@api_key})
+    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
@@ -151,7 +153,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
                       "approved"=>true
                   }.to_json
@@ -165,7 +167,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
                       "approved"=>false
                   }.to_json
@@ -179,7 +181,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@api_key})
+    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
@@ -202,7 +204,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
@@ -213,7 +215,7 @@ class Yordex
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start
-    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@api_key, 'Content-type'=>'application/json'})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
                     "uri"=>"/orders/order-id",
                     "redirectURL"=>"your-redirect-url"
