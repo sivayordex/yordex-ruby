@@ -3,40 +3,24 @@ class Yordex
   require 'net/https'
   require 'json'
 
-  @@api_base = 'https://api.yordex.com/v1/'
+  # @@api_base = 'https://api.yordex.com/v1'
+  @@api_base = 'http://api.dev.yordex.com'
   @@api_key = 'your-api-key'
+  @@api_timeout = 61
+  @@prod = false
 
   def initialize(api_key)
     @@api_key = api_key
   end
 
-  def get_api_key(user, pass)
-    uri = URI.parse("http://internal-api.dev.yordex.com/sessions")
-    http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
-    # http.ssl_version = :SSLv23
-    http.start
-    request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>'none', 'Content-Type'=>'application/json'})
-    request.body = {"username"=>user, "password"=>pass}.to_json
-    response = http.request(request)
-
-p request.body
-    p response
-
-    # uri = URI.parse("http://internal-api.dev.yordex.com/api-keys")
-    # http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
-    # http.start
-    # request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>response.token})
-    # response = http.request(request)
-    #
-    # p response
-  end
-
   def get_order(order_id)
-    uri = URI.parse("https://api.yordex.com/v1/orders/#{order_id}")
+    uri = URI.parse(@@api_base+"/orders/#{order_id}")
+    p @@api_base+"/orders/#{order_id}"
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
@@ -45,9 +29,12 @@ p request.body
   end
 
   def create_trader(trader_id)
-    uri = URI.parse("https://api.yordex.com/v1/traders")
+    uri = URI.parse(@@api_base+"/traders")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
     request.body = {
@@ -69,9 +56,11 @@ p request.body
   end
 
   def update_trader
-    uri = URI.parse("https://api.yordex.com/v1/traders/trader-id")
+    uri = URI.parse(@@api_base+"/traders/trader-id")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
     request.body = {
@@ -89,9 +78,11 @@ p request.body
   end
 
   def create_order
-    uri = URI.parse("https://api.yordex.com/v1/orders")
+    uri = URI.parse(@@api_base+"/orders")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
@@ -108,9 +99,11 @@ p request.body
   end
 
   def update_order
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id")
+    uri = URI.parse(@@api_base+"/orders/order-id")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
@@ -127,9 +120,11 @@ p request.body
   end
 
   def open_order
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/open")
+    uri = URI.parse(@@api_base+"/orders/order-id/open")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
@@ -138,9 +133,11 @@ p request.body
   end
 
   def close_order
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/close")
+    uri = URI.parse(@@api_base+"/orders/order-id/close")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
@@ -149,9 +146,11 @@ p request.body
   end
 
   def approve_order
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/approvals")
+    uri = URI.parse(@@api_base+"/orders/order-id/approvals")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
@@ -163,9 +162,11 @@ p request.body
   end
 
   def reject_order
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/approvals")
+    uri = URI.parse(@@api_base+"/orders/order-id/approvals")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {
@@ -177,9 +178,11 @@ p request.body
   end
 
   def request_advertisements
-    uri = URI.parse("https://api.yordex.com/v1/ads?orderId=order-id")
+    uri = URI.parse(@@api_base+"/ads?orderId=order-id")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Get.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
@@ -200,9 +203,11 @@ p request.body
     # Scenario: unsuccessfully enable or disable an advertisement
 
   def confirm_event
-    uri = URI.parse("https://api.yordex.com/v1/orders/order-id/events/event-id/confirmations")
+    uri = URI.parse(@@api_base+"/orders/order-id/events/event-id/confirmations")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
@@ -211,9 +216,11 @@ p request.body
   end
 
   def get_sso_token
-    uri = URI.parse("https://api.yordex.com/v1/ssotokens  ")
+    uri = URI.parse(@@api_base+"/ssotokens  ")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    if @@prod==true
+      http.use_ssl = true
+    end
     http.start
     request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json'})
     request.body = {

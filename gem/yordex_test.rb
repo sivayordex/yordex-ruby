@@ -3,7 +3,7 @@ require "test/unit"
 
 class YordexTest < Test::Unit::TestCase
 
-    @@APIKEY = 'AUTH_TOKEN_c1aa8acf-9c37-427a-8b5c-e92f85f3c6da'
+    @@APIKEY = '6bf88483-fcc4-4a77-8d19-201853f2df62'
     @@SUCCESS_ORDER = '26f210a7-ccc7-4d08-aaba-509ff4f4ad1e'
     @@FAILURE_ORDER = 'FAILURE!-ccc7-4d08-aaba-509ff4f4ad1e'
     # def test_get_api_key
@@ -13,30 +13,30 @@ class YordexTest < Test::Unit::TestCase
   #
   #Story 2: get a single order
     #
-    # # Scenario: successfully request a single order
-    # def test_successfully_request_a_single_order
-    #   yordex = Yordex.new(@@APIKEY)
-    #   order = yordex.get_order(@@SUCCESS_ORDER)
-    #   assert_equal(200, order.code)
-    # end
-    #
-    # # Scenario: unsuccessfully request a single order
-    # def test_unsuccessfully_request_a_single_order
-    #   yordex = Yordex.new(@@APIKEY)
-    #   order = yordex.get_order(@@FAILURE_ORDER)
-    #   assert_not_equal(200, order.code)
-    # end
+    # Scenario: successfully request a single order
+    def test_successfully_request_a_single_order
+      yordex = Yordex.new(@@APIKEY)
+      order = yordex.get_order(@@SUCCESS_ORDER)
+      assert_equal(200, order.code)
+    end
+
+    # Scenario: unsuccessfully request a single order
+    def test_unsuccessfully_request_a_single_order
+      yordex = Yordex.new(@@APIKEY)
+      order = yordex.get_order(@@FAILURE_ORDER)
+      assert_not_equal(200, order.code)
+    end
   #
   #   # Scenario: successfully display a single order
   #   # Scenario: unsuccessfully display a single order
 
   # #Story 3: create a traderId
   #   # Scenario: successfully request creation of a new trader
-  def test_create_trader
-    yordex = Yordex.new(@@APIKEY)
-    order = yordex.create_trader('my_trader_id')
-    assert_equal(200, order.code)
-  end
+  # def test_create_trader
+  #   yordex = Yordex.new(@@APIKEY)
+  #   order = yordex.create_trader('my_trader_id')
+  #   assert_equal(200, order.code)
+  # end
   #   # Scenario: unsuccessfully request creation or update of a trader
   #   # Scenario: unsuccessfully request update of a trader without Trader ID
   #   # Scenario: successfully create a new trader
