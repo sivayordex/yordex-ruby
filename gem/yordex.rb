@@ -28,8 +28,9 @@ class Yordex
     return response
   end
 
-  def create_trader(trader_id)
+  def create_trader(trader_id, email, password, company_name, company_address_1, company_city, company_country_code, company_postal_code)
     uri = URI.parse(@@api_base+"/traders")
+    p @@api_base+"/traders"
     http = Net::HTTP.new(uri.host, uri.port)
     if @@prod==true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -40,14 +41,15 @@ class Yordex
     request.body = {
                       "traderId"=>trader_id,
                       "user" =>{
-                          "email"=>"user@email.com",
+                          "email"=>email,
+                          "password"=>password
                       },
-                      "companyTradingName"=>"Company name",
+                      "companyTradingName"=>company_name,
                       "companyTradingAddress"=> {
-                        "address1"=>"Address Line 1",
-                        "city"=>"City",
-                        "countryCode"=>"US",
-                        "postalCode"=>"12345"
+                        "address1"=>company_address_1,
+                        "city"=>company_city,
+                        "countryCode"=>company_country_code,
+                        "postalCode"=>company_postal_code
                       }
                   }.to_json
     response = http.request(request)
@@ -55,8 +57,9 @@ class Yordex
     return response
   end
 
-  def update_trader
-    uri = URI.parse(@@api_base+"/traders/trader-id")
+  def update_trader(trader_id, company_name, address_1, city, country_code, postal_code)
+    uri = URI.parse(@@api_base+"/traders/"+trader_id)
+    p @@api_base+"/traders/"+trader_id
     http = Net::HTTP.new(uri.host, uri.port)
     if @@prod==true
       http.use_ssl = true
@@ -64,12 +67,12 @@ class Yordex
     http.start
     request = Net::HTTP::Put.new(uri.request_uri, {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'})
     request.body = {
-                    "companyTradingName"=>"Company name",
+                    "companyTradingName"=>company_name,
                     "companyTradingAddress"=> {
-                      "address1"=>"Address Line 1",
-                      "city"=>"City",
-                      "countryCode"=>"US",
-                      "postalCode"=>"12345"
+                      "address1"=>address_1,
+                      "city"=>city,
+                      "countryCode"=>country_code,
+                      "postalCode"=>postal_code
                     }
                   }.to_json
     response = http.request(request)

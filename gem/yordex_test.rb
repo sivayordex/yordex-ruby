@@ -3,46 +3,65 @@ require "test/unit"
 
 class YordexTest < Test::Unit::TestCase
 
-    @@APIKEY = '6bf88483-fcc4-4a77-8d19-201853f2df62'
-    @@SUCCESS_ORDER = '26f210a7-ccc7-4d08-aaba-509ff4f4ad1e'
-    @@FAILURE_ORDER = 'FAILURE!-ccc7-4d08-aaba-509ff4f4ad1e'
+    @@APIKEY = 'e4dc0992-1262-47b1-9090-464bbb4d0858'
+    @@SUCCESS_ORDER = '45a108be-2e1a-4d08-b526-fb422090663f'
+    @@FAILURE_ORDER = 'FAILURE!-2e1a-4d08-b526-fb422090663f'
     # def test_get_api_key
     #   yordex = Yordex.new(nil)
     #   yordex.get_api_key('andrew@hsmoore.com', 'ASDqwe123')
     # end
   #
   #Story 2: get a single order
+    # #
+    # # Scenario: successfully request a single order
+    # def test_successfully_request_a_single_order
+    #   yordex = Yordex.new(@@APIKEY)
+    #   order = yordex.get_order(@@SUCCESS_ORDER)
+    #   assert_equal("200", order.code)
+    # end
     #
-    # Scenario: successfully request a single order
-    def test_successfully_request_a_single_order
-      yordex = Yordex.new(@@APIKEY)
-      order = yordex.get_order(@@SUCCESS_ORDER)
-      assert_equal(200, order.code)
-    end
-
-    # Scenario: unsuccessfully request a single order
-    def test_unsuccessfully_request_a_single_order
-      yordex = Yordex.new(@@APIKEY)
-      order = yordex.get_order(@@FAILURE_ORDER)
-      assert_not_equal(200, order.code)
-    end
+    # # Scenario: unsuccessfully request a single order
+    # def test_unsuccessfully_request_a_single_order
+    #   yordex = Yordex.new(@@APIKEY)
+    #   order = yordex.get_order(@@FAILURE_ORDER)
+    #   assert_not_equal("200", order.code)
+    # end
   #
   #   # Scenario: successfully display a single order
   #   # Scenario: unsuccessfully display a single order
 
   # #Story 3: create a traderId
-  #   # Scenario: successfully request creation of a new trader
-  # def test_create_trader
+    # Scenario: successfully request creation of a new trader
+  # def test_successfully_create_trader
   #   yordex = Yordex.new(@@APIKEY)
-  #   order = yordex.create_trader('my_trader_id')
-  #   assert_equal(200, order.code)
+  #   trader = yordex.create_trader(nil, 'email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com', 'asdASD12312432', 'Some company', '123 Street', 'London', 'GB', 'AAA1 1AA')
+  #   assert_equal(201, trader.code)
+  #   # "{\"companyTradingName\":\"Some company\",\"companyTradingAddress\":{\"address1\":\"123 Street\",\"postalCode\":\"AAA1 1AA\",\"city\":\"London\",\"countryCode\":\"GB\"},\"traderStatus\":\"REGISTERED\",\"id\":\"f508765a-dde9-46bb-a6f3-8f6ebe9ee7d8\"}"
   # end
-  #   # Scenario: unsuccessfully request creation or update of a trader
-  #   # Scenario: unsuccessfully request update of a trader without Trader ID
-  #   # Scenario: successfully create a new trader
-  #   # Scenario: successfully update a trader
   #   # Scenario: unsuccessfully create a new trader
+  # def test_unsuccessfully_create_trader
+  #   yordex = Yordex.new(@@APIKEY)
+  #   trader = yordex.create_trader(nil, 'email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com', 'notavalidpassword', 'Some company', '123 Street', 'London', 'GB', 'AAA1 1AA')
+  #   assert_not_equal(201, trader.code)
+  # end
+    # Scenario: successfully update a trader
+  def test_successfully_update_trader
+    yordex = Yordex.new(@@APIKEY)
+    trader = yordex.create_trader(nil, 'email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com', 'asdASD12312432', 'Some company', '123 Street', 'London', 'GB', 'AAA1 1AA')
+    res = JSON.parse(trader.body)
+
+    update_trader = yordex.update_trader(res['id'], "Some company", "Some address", "Some city", "GB", "AAAA2 2AA")
+    assert_equal(200, update_trader.code)
+  end
   #   # Scenario: unsuccessfully update a trader
+  # def test_unsuccessfully_update_trader
+  #   yordex = Yordex.new(@@APIKEY)
+  #   trader = yordex.create_trader(nil, 'email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com', 'asdASD12312432', 'Some company', '123 Street', 'London', 'GB', 'AAA1 1AA')
+  #   assert_equal(201, trader.code)
+  #
+  #   update_trader = yordex.update_trader(trader.response.id, "Some company", "Some address", "Some city", "GB", "AAAA2 2AA")
+  #   assert_not_equal(201, trader.code)
+  # end
 
   # #Story 4: create and update order
   #   # Scenario: successfully request creation of an order
