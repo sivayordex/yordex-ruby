@@ -48,10 +48,11 @@ class YordexTest < Test::Unit::TestCase
   def test_successfully_update_trader
     yordex = Yordex.new(@@APIKEY)
     trader = yordex.create_trader(nil, 'email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com', 'asdASD12312432', 'Some company', '123 Street', 'London', 'GB', 'AAA1 1AA')
+    # assert_equal("201", trader.code)
     res = JSON.parse(trader.body)
 
     update_trader = yordex.update_trader(res['id'], "Some company", "Some address", "Some city", "GB", "AAAA2 2AA")
-    assert_equal(200, update_trader.code)
+    assert_equal("200", update_trader.code)
   end
   #   # Scenario: unsuccessfully update a trader
   # def test_unsuccessfully_update_trader
