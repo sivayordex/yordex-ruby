@@ -1,0 +1,12 @@
+------CREATE TRADER-------------------------------------------------------------
+
+curl http://api.dev.yordex.com/traders  -H "Content-type: application/json"  -H "Accept: application/json"  -X POST  -d '{     "traderId":null,    "user" :{        "email":"user9@email9.com", "password":"ASDqwe123"   },    "companyTradingName":"Company name",    "companyTradingAddress": {      "address1":"Address Line 1",      "city":"City",    "countryCode":"US",      "postalCode":"12345"  }}'
+
+{"companyTradingName":"Company name","companyTradingAddress":{"address1":"Address Line 1","postalCode":"12345","city":"City","countryCode":"US"},"traderStatus":"REGISTERED","id":"16c6e0ea-6a2c-4e52-bfcb-79a5e8f158df"}
+
+
+
+------UPDATE TRADER-------------------------------------------------------------
+curl http://api.dev.yordex.com/traders/16c6e0ea-6a2c-4e52-bfcb-79a5e8f158df  -H "Authorization:e4dc0992-1262-47b1-9090-464bbb4d0858"  -H "Content-type: application/json"  -H "Accept: application/json"  -X PUT  -d '{ "companyTradingName":"Company name","companyTradingAddress": {    "address1":"Address Line 1",    "city":"City",    "countryCode":"US",    "postalCode":"12345"  }}'
+
+{"title":"Trader 16c6e0ea-6a2c-4e52-bfcb-79a5e8f158df not found.","status":404,"detail":"Trader 16c6e0ea-6a2c-4e52-bfcb-79a5e8f158df not found."}
