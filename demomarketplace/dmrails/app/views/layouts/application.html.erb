@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dmrails</title>
+    <title>Ruby Demo Marketplace</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,22 @@
   </head>
 
   <body>
+
+    <div class="_header">
+      <div class="_header-nav">
+        <div>logo</div>
+        <di>API Key: <form method="post" action="/apikey/set"><input type="text" id="txtApiKey" name="txtApiKey" value="<%=session[:apikey] %>" /><input type="submit" id="btnSetApiKey" value="Set" /><%= hidden_field_tag "authenticity_token", form_authenticity_token %></form></div>
+        <div>
+          <ul>
+            <li><a href="/orders/index">Orders</a></li>
+            <li><a href="/traders/index">Traders</a></li>
+            <li>...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'welcome/index', to: 'welcome#index'
   get 'say_hello/sona', to: 'your_controller#your_action'
 
+  post 'apikey/set', to: 'api_key#set'
+
 end
