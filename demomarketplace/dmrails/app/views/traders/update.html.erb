@@ -1,0 +1,49 @@
+<h1>Traders > Update</h1>
+
+<form class="" action="/traders/update" method="post">
+
+  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+
+  <div class="fieldset-div">
+    <label for="">Trader ID</label><br/>
+    <input type="text" name="trader_id" value="nil">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Email</label><br/>
+    <input type="text" name="email" value="<%='email'+Random.rand(999999999).to_s+'@server'+Random.rand(999999999).to_s+'.com'%>">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Password</label><br/>
+    <input type="text" name="password" value="asdASD12312432">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Company Name</label><br/>
+    <input type="text" name="company_name" value="Some company">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Company Address 1</label><br/>
+    <input type="text" name="company_address_1" value="123 Street">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Company City</label><br/>
+    <input type="text" name="company_city" value="London">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Company Country Code</label><br/>
+    <input type="text" name="company_country_code" value="GB">
+  </div>
+
+  <div class="fieldset-div">
+    <label for="">Company Postal Code</label><br/>
+    <input type="text" name="company_postal_code" value="AAA1 1AA">
+  </div>
+
+  <br/>
+  <input type="submit" name="" value="Update trader">
+</form>

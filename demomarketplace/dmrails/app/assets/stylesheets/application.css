@@ -46,6 +46,19 @@
       fill: #22A5E6;
   }
 
+#txtApiKey {
+  min-width: 350px !important;
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #e6e6e6;
+}
+#btnSetApiKey {
+    font-size: 13px;
+    padding: 6px 10px;
+    line-height: inherit;
+    width: inherit;
+}
+
 
 .wrapper {
   padding: 15px;
@@ -54,4 +67,41 @@
 
 label {
     font-weight: bold;
+}
+
+
+input[type="text"] {
+    width: 450px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #e6e6e6;
+}
+textarea {
+    width: 450px;
+    padding: 5px;
+    border-radius: 2px;
+    min-height: 100px;
+    border: 1px solid #e6e6e6;
+}
+input[type="submit"] {
+  background: #0abfbf;
+  font-size: 18px;
+  line-height: 32px;
+  width: 33%;
+  padding: 16px 0;
+  display: inline-block;
+  transition: all .25s ease-in-out;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  transition: all .25s ease-in-out;
+  color: #fff;
+}
+  input[type="submit"]:hover {
+      background: #09a7a7;
+  }
+
+.fieldset-div {
+  margin-top:10px;
 }

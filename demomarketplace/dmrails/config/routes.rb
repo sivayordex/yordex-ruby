@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   get 'orders/update', to: 'orders#update'
   post 'orders/update', to: 'orders#update_do'
-  post 'orders/get', to: 'orders#get_do'
 
   get 'orders/open', to: 'orders#open'
   post 'orders/open', to: 'orders#open_do'
@@ -32,5 +31,15 @@ Rails.application.routes.draw do
   get 'orders/reject', to: 'orders#reject'
   post 'orders/reject', to: 'orders#reject_do'
   #-/orders
+
+  #traders
+  get 'traders/index', to: 'traders#index'
+
+  get 'traders/create', to: 'traders#create'
+  post 'traders/create', to: 'traders#create_do'
+
+  get 'traders/update', to: 'traders#update'
+  post 'traders/update', to: 'traders#update_do'
+  #-/traders
 
 end
