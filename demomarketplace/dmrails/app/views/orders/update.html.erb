@@ -1,0 +1,44 @@
+<h1>Orders > Update</h1>
+
+<form class="" action="/orders/update" method="post">
+
+  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+
+  <div class="">
+    <label for="">Order ID</label><br/>
+    <input type="text" name="order_id" value="">
+  </div>
+
+  <div class="">
+    <label for="">Buyer ID</label><br/>
+    <input type="text" name="buyer_id" value="ca4a3471-a33a-495d-b314-0c7cd1a9d31b">
+  </div>
+
+  <div class="">
+    <label for="">Seller ID</label><br/>
+    <input type="text" name="seller_id" value="61b71ad3-c168-4bf8-894b-634057a3287d">
+  </div>
+
+  <div class="">
+    <label for="">Description</label><br/>
+    <textarea type="text" name="description">Ruby Gem Order Test</textarea>
+  </div>
+
+  <div class="">
+    <label for="">Amount (in cents)</label><br/>
+    <input type="text" name="order_amount_in_cents" value="100000">
+  </div>
+
+  <div class="">
+    <label for="">Currency</label><br/>
+    <input type="text" name="order_currency" value="USD">
+  </div>
+
+  <div class="">
+    <label for="">Terms</label><br/>
+    <input type="text" name="terms" value="30% upfront 70% before shipping">
+  </div>
+
+  <br/>
+  <input type="submit" name="" value="Update order">
+</form>

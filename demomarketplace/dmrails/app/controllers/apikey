@@ -1,5 +1,0 @@
-class SetApiKeyController < ApplicationController
-  def set
-    session[:apikey] = params[:txtApiKey]
-  end
-end
