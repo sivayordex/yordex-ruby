@@ -25,6 +25,12 @@ Rails.application.routes.draw do
 
   get 'orders/close', to: 'orders#close'
   post 'orders/close', to: 'orders#close_do'
+
+  get 'orders/approve', to: 'orders#approve'
+  post 'orders/approve', to: 'orders#approve_do'
+
+  get 'orders/reject', to: 'orders#reject'
+  post 'orders/reject', to: 'orders#reject_do'
   #-/orders
 
 end

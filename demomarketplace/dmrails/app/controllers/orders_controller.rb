@@ -66,4 +66,30 @@ class OrdersController < ApplicationController
     @order = order
     @order_body = order.body
   end
+
+  def approve
+  end
+  def approve_do
+    yordex = Yordex.new(session[:apikey])
+    yordex.useDevMode()
+    yordex.useDebug()
+    yordex.usePrint()
+    order = yordex.approve_order(params[:order_id])
+
+    @order = order
+    @order_body = order.body
+  end
+
+  def reject
+  end
+  def reject_do
+    yordex = Yordex.new(session[:apikey])
+    yordex.useDevMode()
+    yordex.useDebug()
+    yordex.usePrint()
+    order = yordex.reject_order(params[:order_id])
+
+    @order = order
+    @order_body = order.body
+  end
 end
