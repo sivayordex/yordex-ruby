@@ -4,8 +4,42 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'welcome/index', to: 'welcome#index'
-  get 'say_hello/sona', to: 'your_controller#your_action'
 
-  post 'apikey/set', to: 'api_key#set'
+  post 'apikey/set', to: 'apikey#set'
+
+  #orders
+  get 'orders/index', to: 'orders#index'
+
+  get 'orders/create', to: 'orders#create'
+  post 'orders/create', to: 'orders#create_do'
+
+  get 'orders/get', to: 'orders#get'
+  post 'orders/get', to: 'orders#get_do'
+
+  get 'orders/update', to: 'orders#update'
+  post 'orders/update', to: 'orders#update_do'
+
+  get 'orders/open', to: 'orders#open'
+  post 'orders/open', to: 'orders#open_do'
+
+  get 'orders/close', to: 'orders#close'
+  post 'orders/close', to: 'orders#close_do'
+
+  get 'orders/approve', to: 'orders#approve'
+  post 'orders/approve', to: 'orders#approve_do'
+
+  get 'orders/reject', to: 'orders#reject'
+  post 'orders/reject', to: 'orders#reject_do'
+  #-/orders
+
+  #traders
+  get 'traders/index', to: 'traders#index'
+
+  get 'traders/create', to: 'traders#create'
+  post 'traders/create', to: 'traders#create_do'
+
+  get 'traders/update', to: 'traders#update'
+  post 'traders/update', to: 'traders#update_do'
+  #-/traders
 
 end

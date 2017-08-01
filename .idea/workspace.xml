@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="238efdad-95f0-42e6-9cee-0b231ac345b2" name="Default" comment="" />
+=======
+    <list default="true" id="238efdad-95f0-42e6-9cee-0b231ac345b2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
     <ignored path="yordex.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -24,8 +30,13 @@
       <file leaf-file-name="yordex.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gem/yordex.rb">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="15">
               <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+=======
+            <state vertical-scroll-proportion="0.3496732">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
               <folding />
             </state>
           </provider>
@@ -34,8 +45,13 @@
       <file leaf-file-name="yordex_test.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gem/yordex_test.rb">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="330">
               <caret line="22" column="53" lean-forward="false" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
               <folding />
             </state>
           </provider>
@@ -560,16 +576,27 @@
       <updated>1499113520227</updated>
       <workItem from="1499113525377" duration="1056000" />
       <workItem from="1499114612740" duration="4141000" />
+<<<<<<< HEAD
       <workItem from="1499203477033" duration="3129000" />
       <workItem from="1499411404867" duration="91000" />
+=======
+      <workItem from="1499203477033" duration="4301000" />
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="8417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="749" y="-1362" width="1920" height="1056" extended-state="0" />
+=======
+    <option name="totallyTimeSpent" value="9498000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -709,10 +736,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gem/yordex.rb">
+    <entry file="file://$PROJECT_DIR$/gem/yordex_test.rb">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="15">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gem/yordex.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3496732">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+>>>>>>> d6d032eacc64df7c9584887e8371424c9b48e3f6
           <folding />
         </state>
       </provider>

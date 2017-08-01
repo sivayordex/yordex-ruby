@@ -11,20 +11,31 @@
   <body>
 
     <div class="_header">
-      <div class="_header-nav">
-        <div>logo</div>
-        <di>API Key: <form method="post" action="/apikey/set"><input type="text" id="txtApiKey" name="txtApiKey" value="<%=session[:apikey] %>" /><input type="submit" id="btnSetApiKey" value="Set" /><%= hidden_field_tag "authenticity_token", form_authenticity_token %></form></div>
-        <div>
-          <ul>
-            <li><a href="/orders/index">Orders</a></li>
-            <li><a href="/traders/index">Traders</a></li>
-            <li>...</li>
+      <div class="_header-nav" style="">
+        <div class="_header-nav-inner">
+          <div style="float:left">
+            <a href="/">
+              <yordex-logo><svg class="logo" width="148" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 40"><g id="logo-mark"><path id="XMLID_42_" class="logo__type" d="M84.1 22.5c0 4.9-2.2 8.4-7.5 8.4-5 0-7.3-3.6-7.3-8.4 0-4.8 2.3-8.4 7.5-8.4 5 .1 7.3 3.6 7.3 8.4m-3.6.1c0-3.3-1.2-5.2-3.8-5.2-2.6 0-3.8 1.9-3.8 5.1 0 3.3 1.2 5.2 3.8 5.2 2.7.1 3.8-1.9 3.8-5.1"></path><path id="XMLID_39_" class="logo__type" d="M128.2 26.3l1.7 2.3c-1.1 1.2-3.3 2.3-5.9 2.3-5.4 0-7.6-3.5-7.6-8.4 0-4.6 2.4-8.4 7.3-8.4 4.7 0 6.6 3.4 6.6 6.9 0 .8-.1 2-.2 2.6h-10c.1 2.6 1.3 4.2 4 4.2 1.3.1 2.9-.4 4.1-1.5m-1.3-5.2v-.6c0-2.1-1.3-3.4-3.3-3.4-2.5 0-3.5 1.8-3.7 4h7z"></path><path id="XMLID_22_" class="logo__type" d="M147.3 30.6h-4.1l-3.5-5.7-3.6 5.7H132l5.4-8.1-5.4-8h4.1l3.6 5.6 3.5-5.6h4.1l-5.4 8.1z"></path><path id="XMLID_21_" class="logo__type" d="M96.1 14.2h-.6c-2.3 0-3.6 1-4.4 2.6v-2.2h-3.4v16h3.5V20.3c.7-1.4 1.8-2.5 3.5-2.5.4 0 .9 0 1.4.1v-3.7z"></path><path id="XMLID_20_" class="logo__type" d="M66 9.1l-4.9 9.3-4.9-9.3H52l7.2 12.7v8.8H63v-8.8l7.1-12.7z"></path><path id="XMLID_33_" class="logo__type" d="M109.8 9.1v6.8c-.8-.8-2.2-1.7-4.4-1.7-4.5 0-6.7 3.2-6.7 8.3 0 5.3 2.2 8.4 6.7 8.4 2 0 3.6-.8 4.6-1.8v1.4h3.4V9h-3.6zm0 17.1c-.6.8-1.8 1.5-3.5 1.5-3 0-4-2.2-4-5.2s.9-5.1 4-5.1c1.8 0 2.9.8 3.5 1.5v7.3z"></path><g id="XMLID_28_"><path id="XMLID_17_" class="logo__mark--left" d="M1.5 5.3c3-5.1 9.6-6.8 14.7-3.8l3 1.8-2.1 3.6L14 5.1c-3.1-1.8-7.1-.7-8.9 2.3-1.8 3.1-.8 7.2 2.3 9l2.9 1.7c-.1.2-1.7 2.9-2.1 3.6l-3.1-1.9c-5-3-6.6-9.5-3.6-14.5"></path><path id="XMLID_16_" class="logo__mark" d="M21.7 31c1.2 0 2.1-.9 2.1-2.1V18.4l7.1-4.2 2.5-1.5c1-.6 1.3-1.9.7-2.8-.6-1-1.8-1.3-2.8-.7-.6.3 2.9-1.7-9.6 5.7-9.4-5.6-7.2-4.3-9.6-5.7-1-.6-2.2-.3-2.8.7-.6 1-.3 2.3.7 2.9.9.6 2.6 1.5 9.6 5.7V29c0 1.1.9 2 2.1 2"></path><path id="XMLID_15_" class="logo__mark--bottom" d="M28.2 25.7v3.5c0 3.6-2.9 6.6-6.6 6.6-3.6 0-6.6-2.9-6.6-6.6v-3.5h-4.2v4c.2 5.7 5 10.3 10.8 10.3 5.8 0 10.6-4.7 10.7-10.5v-3.8h-4.1z"></path><path id="XMLID_14_" class="logo__mark--right" d="M41.8 5.3c-3-5.1-9.6-6.8-14.7-3.8l-3 1.8 2.1 3.6 3.1-1.8c3.1-1.8 7.1-.7 8.9 2.3 1.8 3.1.8 7.2-2.3 9L33 18.1c.1.2 1.7 2.9 2.1 3.6l3.1-1.9c5-3 6.6-9.5 3.6-14.5"></path></g></g></svg></yordex-logo>
+            </a>
+          </div>
+          <div style="float:right;padding: 15px 0 0 15px;">
+            <span style="display:inline-block">API Key: </span><form method="post" action="/apikey/set" style="display:inline-block;"><input type="text" id="txtApiKey" name="txtApiKey" value="<%=session[:apikey] %>" style="min-width: 350px;" /><input type="submit" id="btnSetApiKey" value="Set" /><%= hidden_field_tag "authenticity_token", form_authenticity_token %></form>
+          </div>
+          <br clear="all" />
+        </div>
+        <div class="_header-nav-menu">
+          <ul style="list-style-type: none;">
+            <li style="display:inline"><a href="/orders/index">Orders</a></li>
+            <li style="display:inline"><a href="/traders/index">Traders</a></li>
+            <li style="display:inline">...</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <%= yield %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
 
   </body>
 </html>

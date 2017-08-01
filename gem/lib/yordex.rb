@@ -157,7 +157,7 @@ class Yordex
       http.use_ssl = true
     end
     http.start
-    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
@@ -171,7 +171,7 @@ class Yordex
       http.use_ssl = true
     end
     http.start
-    request = Net::HTTP::POST.new(uri.request_uri, {'Authorization'=>@@api_key})
+    request = Net::HTTP::Post.new(uri.request_uri, {'Authorization'=>@@api_key})
     response = http.request(request)
 
     return response
