@@ -1,7 +1,7 @@
 ## Yordex Ruby `Rails App` and `Gem`
 
-### Navigate to DemoMarketplace / DM Rails
-`cd demomarketplace/dmrails`
+### Navigate to Yordex-Ruby
+`cd yordex-ruby`
 
 ### Run the rails server
 `rails s -p 1337`
