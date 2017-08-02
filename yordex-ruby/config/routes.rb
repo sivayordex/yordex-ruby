@@ -58,4 +58,11 @@ Rails.application.routes.draw do
   post 'traders/update', to: 'traders#update_do'
   #-/traders
 
+  #sso
+  get 'sso/index', to: 'sso#index'
+
+  get 'sso/get', to: 'sso#get'
+  post 'sso/get', to: 'sso#get_do'
+  #-/sso
+
 end

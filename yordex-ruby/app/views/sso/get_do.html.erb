@@ -1,0 +1,13 @@
+<h1>SSO > Get</h1>
+
+<div class="sub_nav_left">
+  <%= @section_nav_item.html_safe %>
+</div>
+
+<div class="inner_content">
+  <% if !@sso_body.blank? %>
+     <pre><%= JSON.pretty_generate(JSON.parse(@sso_body)) %></pre>
+  <% end %>
+</div>
+
+<br clear="all" />
