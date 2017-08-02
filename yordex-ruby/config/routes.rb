@@ -33,6 +33,9 @@ Rails.application.routes.draw do
 
   get 'orders/event', to: 'orders#event'
   post 'orders/event', to: 'orders#event_do'
+
+  get 'orders/ads', to: 'orders#ads'
+  post 'orders/ads', to: 'orders#ads_do'
   #-/orders
 
   #traders

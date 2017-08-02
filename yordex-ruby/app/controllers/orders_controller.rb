@@ -105,4 +105,17 @@ class OrdersController < ApplicationController
     @event = event
     @event_body = event.body
   end
+
+  def ads
+  end
+  def ads_do
+    yordex = Yordex.new(session[:apikey])
+    yordex.useDevMode()
+    yordex.useDebug()
+    yordex.usePrint()
+    order = yordex.request_advertisements(params[:order_id])
+
+    @ads = ads
+    @ads_body = ads.body
+  end
 end
