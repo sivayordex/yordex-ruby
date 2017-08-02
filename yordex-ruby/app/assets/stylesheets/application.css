@@ -28,13 +28,20 @@ pre {
   padding: 15px;
 }
 ._header-nav-menu {
-  padding: 10px 25px;
+  padding: 9px 25px;
   background-color:#0abfbf;
   color: #fff;
 }
   ._header-nav-menu a {
     color: #fff;
+    padding: 10px 8px;
   }
+    ._header-nav-menu a.active {
+      color: #0abfbf;
+      padding: 10px 8px;
+      background-color: #fff;
+    }
+
 
   .logo__mark {
       fill: #366CD9;
@@ -124,7 +131,7 @@ input[type="submit"] {
     /* border-radius: 3px; */
     display: block;
     border-left: 0px solid #0abfbf;
-    width: 70%;
+    width: 85%;
     cursor: pointer;
     /* border: 0; */
     outline: 0;

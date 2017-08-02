@@ -24,11 +24,11 @@
           <br clear="all" />
         </div>
         <div class="_header-nav-menu">
-          <ul style="list-style-type: none;">
-            <li style="display:inline"><a href="/orders/index">Orders</a></li>
-            <li style="display:inline"><a href="/traders/index">Traders</a></li>
-            <li style="display:inline">...</li>
-          </ul>
+          <div>
+            <a href="/orders/index" <%= request.path.start_with?('/orders') ? 'class=active' : '' %>>Orders</a>
+            <a href="/traders/index" <%= request.path.start_with?('/traders') ? 'class=active' : '' %>>Traders</a>
+            <a href="/ads/index" <%= request.path.start_with?('/ads') ? 'class=active' : '' %>>Advertisements</a>
+          </div>
         </div>
       </div>
     </div>

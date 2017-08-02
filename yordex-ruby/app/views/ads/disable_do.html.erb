@@ -1,0 +1,18 @@
+<h1>Advertisements > Disable</h1>
+
+<div class="sub_nav_left">
+  <%= @section_nav_item.html_safe %>
+</div>
+
+<div class="inner_content">
+
+  <% if !@ads_code.blank? %>
+     <div>Code: <%= @ads_code %></div>
+  <% end %>
+
+  <% if !@ads_body.blank? %>
+     <pre><%= JSON.pretty_generate(JSON.parse(@ads_body)) %></pre>
+  <% end %>
+</div>
+
+<br clear="all" />

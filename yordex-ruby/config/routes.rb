@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'orders/create', to: 'orders#create_do'
 
   get 'orders/get', to: 'orders#get'
-  post 'orders/get', to: 'orders#get_do'
+  get 'orders/get_', to: 'orders#get_do'
 
   get 'orders/update', to: 'orders#update'
   post 'orders/update', to: 'orders#update_do'
@@ -33,10 +33,20 @@ Rails.application.routes.draw do
 
   get 'orders/event', to: 'orders#event'
   post 'orders/event', to: 'orders#event_do'
-
-  get 'orders/ads', to: 'orders#ads'
-  post 'orders/ads', to: 'orders#ads_do'
   #-/orders
+
+  #ads
+  get 'ads/index', to: 'ads#index'
+
+  get 'ads/get', to: 'ads#get'
+  get 'ads/get_', to: 'ads#get_do'
+
+  get 'ads/enable', to: 'ads#enable'
+  post 'ads/enable', to: 'ads#enable_do'
+
+  get 'ads/disable', to: 'ads#disable'
+  post 'ads/disable', to: 'ads#disable_do'
+  #-/ads
 
   #traders
   get 'traders/index', to: 'traders#index'

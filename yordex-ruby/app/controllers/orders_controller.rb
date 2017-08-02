@@ -2,15 +2,14 @@ class OrdersController < ApplicationController
 
   def set_nav
     section_nav_item =
-      "<div><a href='/orders/create' class='#{request.path=='/orders/create' ? 'active' : ''}'>Create an Order</a></div>
-      <div><a href='/orders/get' class='#{request.path=='/orders/get' ? 'active' : ''}'>Get an Order</a></div>
-      <div><a href='/orders/update' class='#{request.path=='/orders/update' ? 'active' : ''}'>Update an Order</a></div>
-      <div><a href='/orders/open' class='#{request.path=='/orders/open' ? 'active' : ''}'>Open an Order</a></div>
-      <div><a href='/orders/close' class='#{request.path=='/orders/close' ? 'active' : ''}'>Close an Order</a></div>
-      <div><a href='/orders/approve' class='#{request.path=='/orders/approve' ? 'active' : ''}'>Approve an Order</a></div>
-      <div><a href='/orders/reject' class='#{request.path=='/orders/reject' ? 'active' : ''}'>Reject an Order</a></div>
-      <div><a href='/orders/event' class='#{request.path=='/orders/event' ? 'active' : ''}'>Approve an Event</a></div>
-      <div><a href='/orders/ads' class='#{request.path=='/orders/ads' ? 'active' : ''}'>Adverts</a></div>"
+      "<div><a href='/orders/create' class='#{request.path.start_with?('/orders/create') ? 'active' : ''}'>Create an Order</a></div>
+      <div><a href='/orders/get' class='#{request.path.start_with?('/orders/get') ? 'active' : ''}'>Get an Order</a></div>
+      <div><a href='/orders/update' class='#{request.path.start_with?('/orders/update') ? 'active' : ''}'>Update an Order</a></div>
+      <div><a href='/orders/open' class='#{request.path.start_with?('/orders/open') ? 'active' : ''}'>Open an Order</a></div>
+      <div><a href='/orders/close' class='#{request.path.start_with?('/orders/close') ? 'active' : ''}'>Close an Order</a></div>
+      <div><a href='/orders/approve' class='#{request.path.start_with?('/orders/approve') ? 'active' : ''}'>Approve an Order</a></div>
+      <div><a href='/orders/reject' class='#{request.path.start_with?('/orders/reject') ? 'active' : ''}'>Reject an Order</a></div>
+      <div><a href='/orders/event' class='#{request.path.start_with?('/orders/event') ? 'active' : ''}'>Approve an Event</a></div>"
   end
 
   def index
