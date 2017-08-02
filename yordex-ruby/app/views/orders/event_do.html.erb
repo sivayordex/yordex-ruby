@@ -1,3 +1,13 @@
-<% if !@event_body.blank? %>
-   <div><%= @event_body %></div>
-<% end %>
+<h1>Orders > Event</h1>
+
+<div class="sub_nav_left">
+  <%= @section_nav_item.html_safe %>
+</div>
+
+<div class="inner_content">
+  <% if !@event_body.blank? %>
+     <pre><%= JSON.pretty_generate(JSON.parse(@event_body)) %></pre>
+  <% end %>
+</div>
+
+<br clear="all" />

@@ -1,14 +1,22 @@
 <h1>Orders > Ads</h1>
 
-<form class="" action="/orders/ads" method="post">
+<div class="sub_nav_left">
+  <%= @section_nav_item.html_safe %>
+</div>
 
-  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+<div class="inner_content">
+  <form class="" action="/orders/ads" method="post">
 
-  <div class="fieldset-div">
-    <label for="">Order ID</label><br/>
-    <input type="text" name="order_id" value="">
-  </div>
+    <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
 
-  <br/>
-  <input type="submit" name="" value="Get ads">
-</form>
+    <div class="fieldset-div">
+      <label for="">Order ID</label><br/>
+      <input type="text" name="order_id" value="">
+    </div>
+
+    <br/>
+    <input type="submit" name="" value="Get ads">
+  </form>
+</div>
+
+<br clear="all" />

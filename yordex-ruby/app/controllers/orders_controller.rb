@@ -1,10 +1,28 @@
 class OrdersController < ApplicationController
+
+  def set_nav
+    section_nav_item =
+      "<div><a href='/orders/create' class='#{request.path=='/orders/create' ? 'active' : ''}'>Create an Order</a></div>
+      <div><a href='/orders/get' class='#{request.path=='/orders/get' ? 'active' : ''}'>Get an Order</a></div>
+      <div><a href='/orders/update' class='#{request.path=='/orders/update' ? 'active' : ''}'>Update an Order</a></div>
+      <div><a href='/orders/open' class='#{request.path=='/orders/open' ? 'active' : ''}'>Open an Order</a></div>
+      <div><a href='/orders/close' class='#{request.path=='/orders/close' ? 'active' : ''}'>Close an Order</a></div>
+      <div><a href='/orders/approve' class='#{request.path=='/orders/approve' ? 'active' : ''}'>Approve an Order</a></div>
+      <div><a href='/orders/reject' class='#{request.path=='/orders/reject' ? 'active' : ''}'>Reject an Order</a></div>
+      <div><a href='/orders/event' class='#{request.path=='/orders/event' ? 'active' : ''}'>Approve an Event</a></div>
+      <div><a href='/orders/ads' class='#{request.path=='/orders/ads' ? 'active' : ''}'>Adverts</a></div>"
+  end
+
   def index
+    @section_nav_item = set_nav()
   end
 
   def create
+    @section_nav_item = set_nav()
   end
   def create_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -16,8 +34,11 @@ class OrdersController < ApplicationController
   end
 
   def get
+    @section_nav_item = set_nav()
   end
   def get_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -29,8 +50,11 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @section_nav_item = set_nav()
   end
   def update_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -42,8 +66,11 @@ class OrdersController < ApplicationController
   end
 
   def open
+    @section_nav_item = set_nav()
   end
   def open_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -55,8 +82,11 @@ class OrdersController < ApplicationController
   end
 
   def close
+    @section_nav_item = set_nav()
   end
   def close_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -68,8 +98,11 @@ class OrdersController < ApplicationController
   end
 
   def approve
+    @section_nav_item = set_nav()
   end
   def approve_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -81,8 +114,11 @@ class OrdersController < ApplicationController
   end
 
   def reject
+    @section_nav_item = set_nav()
   end
   def reject_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -94,8 +130,11 @@ class OrdersController < ApplicationController
   end
 
   def event
+    @section_nav_item = set_nav()
   end
   def event_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -107,13 +146,16 @@ class OrdersController < ApplicationController
   end
 
   def ads
+    @section_nav_item = set_nav()
   end
   def ads_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
     yordex.usePrint()
-    order = yordex.request_advertisements(params[:order_id])
+    ads = yordex.request_advertisements(params[:order_id])
 
     @ads = ads
     @ads_body = ads.body
