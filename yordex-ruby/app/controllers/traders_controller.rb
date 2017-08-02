@@ -1,10 +1,21 @@
 class TradersController < ApplicationController
+
+  def set_nav
+    section_nav_item =
+      "<div><a href='/traders/create' class='#{request.path=='/traders/create' ? 'active' : ''}'>Create a Trader</a></div>
+      <div><a href='/traders/update' class='#{request.path=='/traders/update' ? 'active' : ''}'>Update a Trader</a></div>"
+  end
+
   def index
+    @section_nav_item = set_nav()
   end
 
   def create
+    @section_nav_item = set_nav()
   end
   def create_do
+    @section_nav_item = set_nav()
+
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()
@@ -19,8 +30,11 @@ class TradersController < ApplicationController
   end
 
   def update
+    @section_nav_item = set_nav()
   end
   def update_do
+    @section_nav_item = set_nav()
+    
     yordex = Yordex.new(session[:apikey])
     yordex.useDevMode()
     yordex.useDebug()

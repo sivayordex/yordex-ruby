@@ -1,3 +1,13 @@
-<% if !@trader_body.blank? %>
-   <div><%= @trader_body %></div>
-<% end %>
+<h1>Traders > Create</h1>
+
+<div class="sub_nav_left">
+  <%= @section_nav_item.html_safe %>
+</div>
+
+<div class="inner_content">
+  <% if !@trader_body.blank? %>
+     <pre><%= JSON.pretty_generate(JSON.parse(@trader_body)) %></pre>
+  <% end %>
+</div>
+
+<br clear="all" />
