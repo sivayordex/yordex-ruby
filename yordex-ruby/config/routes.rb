@@ -30,6 +30,9 @@ Rails.application.routes.draw do
 
   get 'orders/reject', to: 'orders#reject'
   post 'orders/reject', to: 'orders#reject_do'
+
+  get 'orders/event', to: 'orders#event'
+  post 'orders/event', to: 'orders#event_do'
   #-/orders
 
   #traders

@@ -92,4 +92,17 @@ class OrdersController < ApplicationController
     @order = order
     @order_body = order.body
   end
+
+  def event
+  end
+  def event_do
+    yordex = Yordex.new(session[:apikey])
+    yordex.useDevMode()
+    yordex.useDebug()
+    yordex.usePrint()
+    event = yordex.confirm_event(params[:order_id], params[:event_id])
+
+    @event = event
+    @event_body = event.body
+  end
 end
