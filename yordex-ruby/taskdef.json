@@ -1,0 +1,18 @@
+{
+  "family": "yordex-ruby",
+  "containerDefinitions": [
+    {
+      "image": "%REPOSITORY_URI%:v_%BUILD_NUMBER%",
+      "name": "yordex-ruby",
+      "cpu": 50,
+      "memoryReservation": 128,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 0
+        }
+      ]
+    }
+  ]
+}
