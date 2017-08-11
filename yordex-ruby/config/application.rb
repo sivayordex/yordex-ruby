@@ -12,8 +12,9 @@ module Dmrails
     config.load_defaults 5.1
 
     config.root_directory = '/yordex-ruby'
-    config.assets.prefix = '/yordex-ruby/assets/'
+    config.assets.prefix = '/assets/'
     config.relative_url_root = '/yordex-ruby'
+    config.assets.enabled = true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
