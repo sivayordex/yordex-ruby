@@ -68,7 +68,7 @@ pipeline {
                     println "\u001B[1;32m*****************************************************************************"
                     def workspace = pwd()
 
-                    sh "bash -c \" source '${JENKINS_HOME}'/aws_scripts/ecsDeploy.sh \"handle-web\" \"${env.BUILD_NUMBER}\" " + "\"${workspace}\" \"Dev\" \"dev\" \"2\"\""
+                    sh "bash -c \" source '${JENKINS_HOME}'/aws_scripts/ecsDeploy.sh \"yordex-ruby\" \"${env.BUILD_NUMBER}\" " + "\"${workspace}\" \"Dev\" \"dev\" \"2\"\""
                     println "\u001B[1;32m*****************************************************************************"
                     println "\u2705 \u001B[1;32mDone"
                     println "\u001B[1;32m*****************************************************************************"
