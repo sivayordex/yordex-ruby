@@ -2,14 +2,14 @@ class OrdersController < ApplicationController
 
   def set_nav
     section_nav_item =
-      "<div><a href='/orders/create' class='#{request.path.start_with?('/orders/create') ? 'active' : ''}'>Create an Order</a></div>
-      <div><a href='/orders/get' class='#{request.path.start_with?('/orders/get') ? 'active' : ''}'>Get an Order</a></div>
-      <div><a href='/orders/update' class='#{request.path.start_with?('/orders/update') ? 'active' : ''}'>Update an Order</a></div>
-      <div><a href='/orders/open' class='#{request.path.start_with?('/orders/open') ? 'active' : ''}'>Open an Order</a></div>
-      <div><a href='/orders/close' class='#{request.path.start_with?('/orders/close') ? 'active' : ''}'>Close an Order</a></div>
-      <div><a href='/orders/approve' class='#{request.path.start_with?('/orders/approve') ? 'active' : ''}'>Approve an Order</a></div>
-      <div><a href='/orders/reject' class='#{request.path.start_with?('/orders/reject') ? 'active' : ''}'>Reject an Order</a></div>
-      <div><a href='/orders/event' class='#{request.path.start_with?('/orders/event') ? 'active' : ''}'>Approve an Event</a></div>"
+      "<div><a href='/yordex-ruby/orders/create' class='#{request.path.start_with?('/yordex-ruby/orders/create') ? 'active' : ''}'>Create an Order</a></div>
+      <div><a href='/yordex-ruby/orders/get' class='#{request.path.start_with?('/yordex-ruby/orders/get') ? 'active' : ''}'>Get an Order</a></div>
+      <div><a href='/yordex-ruby/orders/update' class='#{request.path.start_with?('/yordex-ruby/orders/update') ? 'active' : ''}'>Update an Order</a></div>
+      <div><a href='/yordex-ruby/orders/open' class='#{request.path.start_with?('/yordex-ruby/orders/open') ? 'active' : ''}'>Open an Order</a></div>
+      <div><a href='/yordex-ruby/orders/close' class='#{request.path.start_with?('/yordex-ruby/orders/close') ? 'active' : ''}'>Close an Order</a></div>
+      <div><a href='/yordex-ruby/orders/approve' class='#{request.path.start_with?('/yordex-ruby/orders/approve') ? 'active' : ''}'>Approve an Order</a></div>
+      <div><a href='/yordex-ruby/orders/reject' class='#{request.path.start_with?('/yordex-ruby/orders/reject') ? 'active' : ''}'>Reject an Order</a></div>
+      <div><a href='/yordex-ruby/orders/event' class='#{request.path.start_with?('/yordex-ruby/orders/event') ? 'active' : ''}'>Approve an Event</a></div>"
   end
 
   def index

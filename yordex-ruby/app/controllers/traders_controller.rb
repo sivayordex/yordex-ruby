@@ -2,8 +2,8 @@ class TradersController < ApplicationController
 
   def set_nav
     section_nav_item =
-      "<div><a href='/traders/create' class='#{request.path.start_with?('/traders/create') ? 'active' : ''}'>Create a Trader</a></div>
-      <div><a href='/traders/update' class='#{request.path.start_with?('/traders/update') ? 'active' : ''}'>Update a Trader</a></div>"
+      "<div><a href='/yordex-ruby/traders/create' class='#{request.path.start_with?('/yordex-ruby/traders/create') ? 'active' : ''}'>Create a Trader</a></div>
+      <div><a href='/yordex-ruby/traders/update' class='#{request.path.start_with?('/yordex-ruby/traders/update') ? 'active' : ''}'>Update a Trader</a></div>"
   end
 
   def index
