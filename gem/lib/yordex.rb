@@ -66,6 +66,8 @@ class Yordex
 
     response = http.request(request)
 
+    printOrLog(response.to_json)
+
     return response
   end
 
@@ -163,7 +165,7 @@ class Yordex
   def get_sso_token(uri="/orders/order-id", redirect_url="your-redirect-url")
     return master_http(@@api_base+"/ssotokens", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
                     "uri"=>uri,
-                    "redirectURL"=>redirect_url
+                    "redirectUrl"=>redirect_url
                   })
   end
 

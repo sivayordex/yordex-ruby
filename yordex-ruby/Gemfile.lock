@@ -1,3 +1,8 @@
+PATH
+  remote: ../gem
+  specs:
+    yordex (0.0.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,7 +157,6 @@ GEM
     websocket-extensions (0.1.2)
     xpath (2.1.0)
       nokogiri (~> 1.3)
-    yordex (0.0.2)
 
 PLATFORMS
   ruby
@@ -171,7 +175,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  yordex (>= 0.0.2)
+  yordex!
 
 BUNDLED WITH
    1.15.1
