@@ -40,7 +40,7 @@ class TradersController < ApplicationController
     yordex.useDebug()
     yordex.usePrint()
 
-    trader = yordex.update_trader(params[:trader_id], params[:company_name], params[:address_1], params[:city], params[:country_code], params[:postal_code])
+    trader = yordex.update_trader(params[:trader_id], params[:company_name], params[:company_address_1], params[:company_city], params[:company_country_code], params[:company_postal_code])
 
     @trader = trader
     @trader_body = trader.body

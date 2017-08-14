@@ -62,6 +62,8 @@ class Yordex
       request.body = body.to_json
     end
 
+    printOrLog(request.body)
+
     response = http.request(request)
 
     return response
