@@ -75,55 +75,63 @@ class Yordex
     return master_http(@@api_base+"/orders/#{order_id}", "get", {'Authorization'=>@@api_key})
   end
 
-  def create_trader(trader_id, email, password, company_name, company_address_1, company_city, company_country_code, company_postal_code)
-    return master_http(@@api_base+"/traders", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'}, {
-                      "traderId"=>trader_id,
-                      "user" =>{
-                          "email"=>email,
-                          "password"=>password
-                      },
-                      "companyTradingName"=>company_name,
-                      "companyTradingAddress"=> {
-                        "address1"=>company_address_1,
-                        "city"=>company_city,
-                        "countryCode"=>company_country_code,
-                        "postalCode"=>company_postal_code
-                      }
-                  })
+  def create_trader(partner_id, email, password, company_name, company_address_1, company_city, company_country_code, company_postal_code)
+    return master_http(@@api_base+"/traders", "post",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'},
+                      {
+                        "partnerId"=>partner_id,
+                        "user" =>{
+                            "email"=>email,
+                            "password"=>password
+                        },
+                        "companyTradingName"=>company_name,
+                        "companyTradingAddress"=> {
+                          "address1"=>company_address_1,
+                          "city"=>company_city,
+                          "countryCode"=>company_country_code,
+                          "postalCode"=>company_postal_code
+                        }
+                    })
   end
 
   def update_trader(trader_id, company_name, address_1, city, country_code, postal_code)
-    return master_http(@@api_base+"/traders/"+trader_id, "put", {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'}, {
-                    "companyTradingName"=>company_name,
-                    "companyTradingAddress"=> {
-                      "address1"=>address_1,
-                      "city"=>city,
-                      "countryCode"=>country_code,
-                      "postalCode"=>postal_code
-                    }
-                  })
+    return master_http(@@api_base+"/traders/"+trader_id, "put",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'},
+                      {
+                        "companyTradingName"=>company_name,
+                        "companyTradingAddress"=> {
+                          "address1"=>address_1,
+                          "city"=>city,
+                          "countryCode"=>country_code,
+                          "postalCode"=>postal_code
+                        }
+                      })
   end
 
   def create_order(buyer_id, seller_id, description, order_amount_in_cents, order_currency, terms)
-    return master_http(@@api_base+"/orders", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
-                    "buyerId"=>buyer_id,
-                    "sellerId"=>seller_id,
-                    "description"=>description,
-                    "orderAmountInCents"=>order_amount_in_cents,
-                    "orderCurrency"=>order_currency,
-                    "terms"=>terms
-                  })
+    return master_http(@@api_base+"/orders", "post",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json'},
+                      {
+                        "buyerId"=>buyer_id,
+                        "sellerId"=>seller_id,
+                        "description"=>description,
+                        "orderAmountInCents"=>order_amount_in_cents,
+                        "orderCurrency"=>order_currency,
+                        "terms"=>terms
+                      })
   end
 
   def update_order(order_id, buyer_id, seller_id, description, order_amount_in_cents, order_currency, terms)
-    return master_http(@@api_base+"/orders/"+order_id, "put", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
-                    "buyerId"=>buyer_id,
-                    "sellerId"=>seller_id,
-                    "description"=>description,
-                    "orderAmountInCents"=>order_amount_in_cents,
-                    "orderCurrency"=>order_currency,
-                    "terms"=>terms
-                  })
+    return master_http(@@api_base+"/orders/"+order_id, "put",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json'},
+                      {
+                        "buyerId"=>buyer_id,
+                        "sellerId"=>seller_id,
+                        "description"=>description,
+                        "orderAmountInCents"=>order_amount_in_cents,
+                        "orderCurrency"=>order_currency,
+                        "terms"=>terms
+                      })
   end
 
   def open_order(order_id)
@@ -135,15 +143,19 @@ class Yordex
   end
 
   def approve_order(order_id)
-    return master_http(@@api_base+"/orders/"+order_id+"/approvals", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
-                      "approved"=>true
-                  })
+    return master_http(@@api_base+"/orders/"+order_id+"/approvals", "post",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json'},
+                      {
+                          "approved"=>true
+                      })
   end
 
   def reject_order(order_id)
-    return master_http(@@api_base+"/orders/"+order_id+"/approvals", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
-                      "approved"=>false
-                  })
+    return master_http(@@api_base+"/orders/"+order_id+"/approvals", "post",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json'},
+                      {
+                          "approved"=>false
+                      })
   end
 
   def request_advertisements(order_id)
@@ -163,10 +175,12 @@ class Yordex
   end
 
   def get_sso_token(uri="/orders/order-id", redirect_url="your-redirect-url")
-    return master_http(@@api_base+"/ssotokens", "post", {'Authorization'=>@@api_key, 'Content-type'=>'application/json'}, {
-                    "uri"=>uri,
-                    "redirectUrl"=>redirect_url
-                  })
+    return master_http(@@api_base+"/ssotokens", "post",
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json'},
+                      {
+                        "uri"=>uri,
+                        "redirectUrl"=>redirect_url
+                      })
   end
 
 

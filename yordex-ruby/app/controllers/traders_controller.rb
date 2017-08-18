@@ -21,9 +21,9 @@ class TradersController < ApplicationController
     yordex.useDebug()
     yordex.usePrint()
 
-    _trader_id = params[:trader_id]=="" || params[:trader_id]=="nil" ? nil : params[:trader_id]
+    _partner_id = params[:partner_id]=="" || params[:partner_id]=="nil" ? nil : params[:partner_id]
 
-    trader = yordex.create_trader(_trader_id, params[:email], params[:password], params[:company_name], params[:company_address_1], params[:company_city], params[:company_country_code], params[:company_postal_code])
+    trader = yordex.create_trader(_partner_id, params[:email], params[:password], params[:company_name], params[:company_address_1], params[:company_city], params[:company_country_code], params[:company_postal_code])
 
     @trader = trader
     @trader_body = trader.body
