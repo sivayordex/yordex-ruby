@@ -76,36 +76,63 @@ class Yordex
   end
 
   def create_trader(partner_id, email, password, company_name, company_address_1, company_city, company_country_code, company_postal_code)
+    _json = if ((company_address_1.nil? || company_address_1.empty?) &&
+                (company_city.nil? || company_city.empty?) &&
+                (company_country_code.nil? || company_country_code.empty?) &&
+                (company_postal_code.nil? || company_postal_code.empty?))
+            then
+              {
+                "partnerId"=>partner_id,
+                "user" =>{
+                  "email"=>email,
+                  "password"=>password
+                },
+                "companyTradingName"=>company_name
+              }
+            else
+              {
+                "partnerId"=>partner_id,
+                "user" =>{
+                  "email"=>email,
+                  "password"=>password
+                },
+                "companyTradingName"=>company_name,
+                "companyTradingAddress"=> {
+                  "address1"=>company_address_1,
+                  "city"=>company_city,
+                  "countryCode"=>company_country_code,
+                  "postalCode"=>company_postal_code
+                }
+              }
+            end
+
     return master_http(@@api_base+"/traders", "post",
-                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'},
-                      {
-                        "partnerId"=>partner_id,
-                        "user" =>{
-                            "email"=>email,
-                            "password"=>password
-                        },
-                        "companyTradingName"=>company_name,
-                        "companyTradingAddress"=> {
-                          "address1"=>company_address_1,
-                          "city"=>company_city,
-                          "countryCode"=>company_country_code,
-                          "postalCode"=>company_postal_code
-                        }
-                    })
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'}, _json)
   end
 
   def update_trader(trader_id, company_name, address_1, city, country_code, postal_code)
+    _json = if ((address_1.nil? || address_1.empty?) &&
+                (city.nil? || city.empty?) &&
+                (country_code.nil? || country_code.empty?) &&
+                (postal_code.nil? || postal_code.empty?))
+            then
+              {
+                "companyTradingName"=>company_name
+              }
+            else
+              {
+                "companyTradingName"=>company_name,
+                "companyTradingAddress"=> {
+                  "address1"=>address_1,
+                  "city"=>city,
+                  "countryCode"=>country_code,
+                  "postalCode"=>postal_code
+                }
+              }
+            end
+
     return master_http(@@api_base+"/traders/"+trader_id, "put",
-                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'},
-                      {
-                        "companyTradingName"=>company_name,
-                        "companyTradingAddress"=> {
-                          "address1"=>address_1,
-                          "city"=>city,
-                          "countryCode"=>country_code,
-                          "postalCode"=>postal_code
-                        }
-                      })
+                      {'Authorization'=>@@api_key, 'Content-type'=>'application/json', 'Accept'=>'application/json'}, _json)
   end
 
   def create_order(buyer_id, seller_id, description, order_amount_in_cents, order_currency, terms)

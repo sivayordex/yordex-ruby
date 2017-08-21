@@ -1,7 +1,7 @@
 PATH
   remote: ../gem
   specs:
-    yordex (0.0.6)
+    yordex (0.0.8)
 
 GEM
   remote: https://rubygems.org/
