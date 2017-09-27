@@ -19,6 +19,7 @@ class SsoController < ApplicationController
     yordex.useDevMode()
     yordex.useDebug()
     yordex.usePrint()
+
     sso = yordex.get_sso_token(params[:uri], params[:redirect_url])
 
     @sso = sso

@@ -58,7 +58,7 @@ class Yordex
       request = Net::HTTP::Delete.new(uri.request_uri, headers)
     end
 
-    if (!body.blank?)
+    if (!body.nil? && !body.empty?)
       request.body = body.to_json
     end
 
