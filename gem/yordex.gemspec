@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'yordex'
-  s.version     = '0.0.9'
-  s.date        = '2017-08-21'
+  s.version     = '0.0.10'
+  s.date        = '2017-09-28'
   s.summary     = "Yordex"
   s.description = "Yordex Ruby Gem"
   s.authors     = ["Andrew Odendaal"]
