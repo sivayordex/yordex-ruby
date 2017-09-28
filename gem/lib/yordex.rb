@@ -12,11 +12,14 @@ class Yordex
     @@debug = false
     @@print = false
 
-    def initialize(api_key, test_mode)
+    def initialize(api_key, env=nil)
         @@api_key = api_key
-        @@test = test_mode
-        if @@test
-            @@api_base='https://api.test.yordex.com'
+        if env == 'test'
+            @@test = true
+            @@api_base = 'https://api.test.yordex.com'
+        elsif env == 'prod'
+            @@prod = true
+            @@api_base = 'https://api.yordex.com/v1'
         end
     end
 
